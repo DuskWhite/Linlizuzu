@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xyxy.sys.mapper.OrderMapper">
+    <select id="getCountByUserName" parameterType="String" resultType="Integer">
+        SELECT
+            COUNT(*)
+        FROM
+            x_order
+        WHERE
+            owner_name = #{username}
+    </select>
+    <select id="getCountByRenterName" parameterType="String" resultType="Integer">
+        SELECT
+            COUNT(*)
+        FROM
+            x_order
+        WHERE
+            renter_name = #{username} and order_status = 1
+    </select>
+    <update id="updateOrderStatus" parameterType="Integer" >
+        UPDATE x_order
+        SET order_status = 3
+        WHERE
+            order_id = #{id} and order_status = 1
+    </update>
+    <update id="changeOrderStatus" >
+        UPDATE x_order
+        SET order_status = #{status}
+        WHERE
+            order_id = #{id}
+    </update>
+</mapper>

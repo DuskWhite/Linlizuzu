@@ -4,18 +4,8 @@
       <el-card id="search">
         <el-row>
           <el-col :xs="24" :sm="22" :lg="16">
-            <el-input
-              placeholder="商品名"
-              v-model="searchModel.goodname"
-              clearable
-            />
-            <el-button
-              type="primary"
-              round
-              icon="el-icon-search"
-              @click="getGoodList()"
-              >查询</el-button
-            >
+            <el-input placeholder="商品名" v-model="searchModel.goodname" clearable />
+            <el-button type="primary" round :icon="ElIconSearch" @click="getGoodList()">查询</el-button>
           </el-col>
         </el-row>
       </el-card>
@@ -23,52 +13,24 @@
     <el-main style="margin-top: 20px">
       <el-card v-loading="loading">
         <el-row :gutter="30">
-          <el-col
-            :xs="12"
-            :sm="6"
-            :md="5"
-            :lg="4"
-            v-for="(go, index) in goodList"
-            :key="index"
-          >
+          <el-col :xs="12" :sm="6" :md="5" :lg="4" v-for="(go, index) in goodList" :key="index">
             <!-- 判断商品是否处于下架状态 v-if="go.status == 1"-->
             <el-card class="cards" :body-style="{ padding: '0px' }">
               <!-- 设置商品图片，如果图片为空则展示默认图片 -->
-              <el-image
-                :src="go.img ? go.img : ''"
-                class="image"
-                :preview-src-list="[go.img ? go.img : '']"
-                @error="setDefaultImage"
-              />
-              <div
-                class="fonttotal"
-                style="cursor: pointer"
-                @click="CreateOrder(go.id)"
-              >
+              <el-image :src="go.img ? go.img : ''" class="image" :preview-src-list="[go.img ? go.img : '']"
+                @error="setDefaultImage" />
+              <div class="fonttotal" style="cursor: pointer" @click="CreateOrder(go.id)">
                 <div class="fontarea">{{ go.goodname }}</div>
-                <div
-                  class="fontarea"
-                  style="color: #eea20e; font-size: 17px; font-weight: bold"
-                >
+                <div class="fontarea" style="color: #eea20e; font-size: 17px; font-weight: bold">
                   ¥ {{ go.price }}/天
                 </div>
               </div>
               <div class="fonttotal">
-                <el-avatar
-                  style="float: left"
-                  :src="
-                    go.useravatar
-                      ? go.useravatar
-                      : 'http://localhost:9999/api/uploadFile/avatar.jpg'
-                  "
-                  :size="18"
-                  @error="setDefaultImage"
-                ></el-avatar>
-                <el-button
-                  type="text"
-                  class="textbutton"
-                  @click="openCommentDialog(go.userid)"
-                >
+                <el-avatar style="float: left" :src="go.useravatar
+                    ? go.useravatar
+                    : 'http://localhost:9999/uploadFile/avatar.jpg'
+                  " :size="18" @error="setDefaultImage"></el-avatar>
+                <el-button type="text" class="textbutton" @click="openCommentDialog(go.userid)">
                   <span class="fontarea">{{ go.username }}</span>
                 </el-button>
 
@@ -78,35 +40,15 @@
           </el-col>
         </el-row>
 
-        <el-dialog
-          style="width: 100%"
-          title="商家评价"
-          :visible.sync="CommentdialogFormVisible"
-        >
+        <el-dialog style="width: 100%" title="商家评价" :visible.sync="CommentdialogFormVisible">
           <el-row :gutter="30">
-            <el-col
-              :xs="24"
-              :sm="24"
-              :md="24"
-              :lg="24"
-              v-for="co in commentList"
-              :key="co.id"
-            >
+            <el-col :xs="24" :sm="24" :md="24" :lg="24" v-for="co in commentList" :key="co.id">
               <div class="commentcard">
-                <el-avatar
-                  style="float: left"
-                  :src="
-                    co.renteravatar
-                      ? co.renteravatar
-                      : 'http://localhost:9999/api/uploadFile/avatar.jpg'
-                  "
-                  :size="35"
-                  @error="setDefaultImage"
-                ></el-avatar>
-                <span
-                  style="font-size: 17px; padding-left: 10px; font-weight: bold"
-                  >{{ co.rentername }}</span
-                >
+                <el-avatar style="float: left" :src="co.renteravatar
+                    ? co.renteravatar
+                    : 'http://localhost:9999/uploadFile/avatar.jpg'
+                  " :size="35" @error="setDefaultImage"></el-avatar>
+                <span style="font-size: 17px; padding-left: 10px; font-weight: bold">{{ co.rentername }}</span>
 
                 <br />
                 <span style="padding-left: 10px; padding-right: 10px">{{
@@ -115,11 +57,7 @@
                 <span>{{ co.goodname }}</span>
                 <div style="padding-top: 20px">{{ co.content }}</div>
                 <div class="block">
-                  <el-rate
-                    style="margin-top: 12px"
-                    v-model="co.score"
-                    disabled
-                  ></el-rate>
+                  <el-rate style="margin-top: 12px" v-model="co.score" disabled></el-rate>
                 </div>
                 <el-divider></el-divider>
               </div>
@@ -127,43 +65,21 @@
           </el-row>
         </el-dialog>
         <!-- 商品详情 -->
-        <el-dialog
-          @close="clearForm"
-          :title="title"
-          :visible.sync="dialogFormVisible"
-        >
+        <el-dialog @close="clearForm" :title="title" :visible.sync="dialogFormVisible">
           <el-form :model="orderForm" ref="orderFormRef" :rules="rules">
-            <el-form-item
-              label="商品名称"
-              :label-width="formLabelWidth"
-              prop="goodname"
-              >{{ goodForm.goodname }}
+            <el-form-item label="商品名称" :label-width="formLabelWidth" prop="goodname">{{ goodForm.goodname }}
             </el-form-item>
-            <el-form-item
-              label="租借时间"
-              :label-width="formLabelWidth"
-              prop="overTime"
-            >
-              <el-date-picker
-                v-model="orderForm.overTime"
-                type="datetime"
-                format="yyyy-MM-dd HH:mm:ss"
-                value-format="yyyy-MM-dd HH:mm:ss"
-                placeholder="选择日期时间"
-                align="right"
-                :default-time="nowTime"
-                :picker-options="pickerOptions"
-                @change="getTotalPrice"
-              >
+            <el-form-item label="租借时间" :label-width="formLabelWidth" prop="overTime">
+              <el-date-picker :default-time="nowTime.map((d) => dayjs(d, 'hh:mm:ss').toDate())
+                " :shortcuts="pickerOptions && pickerOptions.shortcuts"
+                :disabled-date="pickerOptions && pickerOptions.disabledDate"
+                :cell-class-name="pickerOptions && pickerOptions.cellClassName" v-model="orderForm.overTime"
+                type="datetime" format="yyyy-MM-dd HH:mm:ss" value-format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间"
+                align="right" @change="getTotalPrice">
               </el-date-picker>
             </el-form-item>
-            <el-form-item
-              label="共计:"
-              :label-width="formLabelWidth"
-              prop="orderAmountTotal"
-            >
-              {{ orderForm.orderAmountTotal }}</el-form-item
-            >
+            <el-form-item label="共计:" :label-width="formLabelWidth" prop="orderAmountTotal">
+              {{ orderForm.orderAmountTotal }}</el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -171,15 +87,9 @@
           </div>
         </el-dialog>
       </el-card>
-      <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-sizes="[12, 24, 36, 48]"
-        :page-size="searchModel.pageSize"
-        layout="total, sizes,prev, pager, next, jumper"
-        :total="total"
-      >
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
+        :page-sizes="[12, 24, 36, 48]" :page-size="searchModel.pageSize" layout="total, sizes,prev, pager, next, jumper"
+        :total="total">
       </el-pagination>
     </el-main>
     <el-backtop></el-backtop>
@@ -187,15 +97,13 @@
 </template>
 
 <script>
-import goodApi from "@/api/goodManage";
-import commentApi from "@/api/commentManage";
-import orderApi from "@/api/orderManage";
-import userApi from "@/api/userManage";
+import { Search as ElIconSearch } from '@element-plus/icons'import * as dayjs from 'dayjs';
+
 export default {
-  inject: ["reload"],
   data() {
+
     return {
-      loading:false,
+      loading: false,
       commentList: [],
       nowTime: "",
       owneravatar: "",
@@ -252,8 +160,11 @@ export default {
           },
         ],
       },
-    };
+      dayjs,
+      ElIconSearch,
+    }
   },
+  inject: ["reload"],
   methods: {
     // 获取当前时间
     getNowTime() {
@@ -321,15 +232,16 @@ export default {
     },
     getGoodList() {
       this.loading = true;
+      axios.get
       goodApi.getMarketGoodList(this.searchModel).then(async (response) => {
         let length = 0
         let list = response.data.rows;
         this.total = response.data.total;
         console.log(response.data.total);
         // 判断当前页是否为最后一页
-        if(this.searchModel.pageNo>(response.data.total/this.searchModel.pageSize)){
-          length = response.data.total-(this.searchModel.pageSize*(this.searchModel.pageNo-1))
-        }else{
+        if (this.searchModel.pageNo > (response.data.total / this.searchModel.pageSize)) {
+          length = response.data.total - (this.searchModel.pageSize * (this.searchModel.pageNo - 1))
+        } else {
           length = this.searchModel.pageSize
         }
         console.log(length);
@@ -338,7 +250,7 @@ export default {
             list[i].userreputation = res.data.reputation;
             list[i].userid = res.data.id;
             list[i].useravatar = res.data.avatar;
-          }).catch((error=>{
+          }).catch((error => {
             console.log(error);
           }));
         }
@@ -369,11 +281,11 @@ export default {
       }
     },
     /**
-     * @DateDiff 计算相差的天数
-     * @param Date_end 结束时间
-     * @param Date_start 开始时间
-     * @returns {number} 相差天数
-     */
+    * @DateDiff 计算相差的天数
+    * @param Date_end 结束时间
+    * @param Date_start 开始时间
+    * @returns {number} 相差天数
+    */
     //计算日期间隔天数
     getDiffDay(date_1, date_2) {
       // 计算两个日期之间的差值
@@ -421,7 +333,7 @@ export default {
                 that.goodForm.username,
                 that.changeNum
               )
-              .then((res) => {})
+              .then((res) => { })
               .catch((error) => {
                 console.log(error);
               });
@@ -555,20 +467,22 @@ export default {
   },
   mounted() {
     // this.getGoodList();
-  },
-};
+  }
+}
 </script>
 
 <style>
 .commentcard {
   padding: 10px;
 }
+
 .textbutton {
   padding-top: 0;
   color: black;
   position: absolute;
   z-index: 1;
 }
+
 .fontarea {
   width: 11em;
   white-space: nowrap;
@@ -577,6 +491,7 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
 .fonttotal {
   padding-left: 10px;
   padding-right: 10px;
@@ -592,6 +507,7 @@ export default {
   background: rgb(238, 245, 255);
   color: rgb(021, 120, 255);
 }
+
 .cards {
   border: 1px solid #e4e4e4;
   display: block;
@@ -601,6 +517,7 @@ export default {
   font-size: 15px;
   height: 250px;
 }
+
 .time {
   font-size: 13px;
   color: #999;
@@ -626,7 +543,7 @@ export default {
 .clearfix:before,
 .clearfix:after {
   display: table;
-  content: "";
+  content: '';
 }
 
 .clearfix:after {

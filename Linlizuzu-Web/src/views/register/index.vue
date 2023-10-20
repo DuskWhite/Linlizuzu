@@ -114,7 +114,7 @@ export default {
         roleIdList: ["3"],
         status: "1",
         balance: 0,
-        avatar: "http://localhost:9999/uploadFile/newavatar.jpg",
+        avatar: "http://localhost:9999/api/uploadFile/newavatar.jpg",
       },
       rules: {
         username: [

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
  * @author 吴沈涛
  * @since 2023-06-01
  */
-@TableName("x_order")
+@TableName("zu_order")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;

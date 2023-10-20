@@ -5,7 +5,7 @@
     <el-button @click="open" type="text" style="width: 100%">
       <div
         style="
-          background-image: url('http://localhost:9999/uploadFile/welcome.jpg');
+          background-image: url('http://localhost:9999/api/uploadFile/welcome.jpg');
           background-size: cover;
         "
       >

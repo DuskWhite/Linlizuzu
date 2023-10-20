@@ -66,8 +66,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             // 创建jwt
             String token = jwtUtil.createToken(loginUser);
             // 返回数据
-            Map<String, Object> data = new HashMap<>();
+            Map<String, Object> data = new HashMap<>(10);
             data.put("token", token);
+            redisTemplate.opsForValue().set(loginUser.getUsername(),token);
             return data;
         }
         return null;
@@ -77,11 +78,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public Map<String, Object> getUserInfo(String token) {
         // 根据token获取用户信息，redis
-        //Object obj = redisTemplate.opsForValue().get(token);
+        Object obj = redisTemplate.opsForValue().get(token);
         User loginUser = null;
         try {
             loginUser = jwtUtil.parseToken(token, User.class);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

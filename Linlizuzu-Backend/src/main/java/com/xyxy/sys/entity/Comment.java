@@ -20,12 +20,12 @@ import java.time.LocalDateTime;
  * @author 吴沈涛
  * @since 2023-06-18
  */
-@TableName("x_comment")
+@TableName("zu_comment")
 public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    @TableId(value = "comment_id", type = IdType.AUTO)
+    private Integer commentId;
 
     private Integer goodId;
 
@@ -44,8 +44,8 @@ public class Comment implements Serializable {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime publishTime;
 
-    public Integer getId() {
-        return id;
+    public Integer getCommentId() {
+        return commentId;
     }
 
     public Integer getScore() {
@@ -56,8 +56,8 @@ public class Comment implements Serializable {
         this.score = score;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
     }
     public Integer getGoodId() {
         return goodId;
@@ -105,7 +105,7 @@ public class Comment implements Serializable {
     @Override
     public String toString() {
         return "Comment{" +
-                "id=" + id +
+                "id=" + commentId +
                 ", goodId=" + goodId +
                 ", ownerId=" + ownerId +
                 ", renterId=" + renterId +

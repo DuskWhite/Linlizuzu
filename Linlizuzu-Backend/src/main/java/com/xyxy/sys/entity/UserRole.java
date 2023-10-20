@@ -17,7 +17,7 @@ import java.io.Serializable;
  * @author 吴沈涛
  * @since 2023-05-15
  */
-@TableName("x_user_role")
+@TableName("zu_user_role")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -13,10 +13,13 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * @author Damumu
+ */
 @Component
 public class JwtUtil {
-    // 有效期
-    private static final long JWT_EXPIRE = 60*60*1000L;  //一小时60*60*1000L
+    // 有效期一小时60*60*1000L
+    private static final long JWT_EXPIRE = 60*60*1000L;
     // 令牌秘钥
     private static final String JWT_KEY = "123456";
 

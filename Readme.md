@@ -22,20 +22,20 @@
 ## 项目效果图
 根据用户权限实现动态路由,下图为管理员用户的首页.
 
-![](https://raw.githubusercontent.com/DuskWhite/Image/main/20230713202853.png?token=AURJC3JH53O273IWOVHBBU3EV7XEW)    
+![](https://raw.githubusercontent.com/DuskWhite/Image/main/20230713202853.png)    
 
 个人信息设置    
-![](https://raw.githubusercontent.com/DuskWhite/Image/main/20230713203151.png?token=AURJC3PD6KRYGCZR4I2OCPLEV7XPO)
+![](https://raw.githubusercontent.com/DuskWhite/Image/main/20230713203151.png)
 
 充值中心
 
-![](https://raw.githubusercontent.com/DuskWhite/Image/main/20230713203259.png?token=AURJC3KLKIR36AMCPOZ6WCTEV7XTU)
+![](https://raw.githubusercontent.com/DuskWhite/Image/main/20230713203259.png)
 
 租赁商城
-![](https://raw.githubusercontent.com/DuskWhite/Image/main/20230713203413.png?token=AURJC3LQUMWILCO7JA6Z7YTEV7XYK)
+![](https://raw.githubusercontent.com/DuskWhite/Image/main/20230713203413.png)
 
 后台管理
-![](https://raw.githubusercontent.com/DuskWhite/Image/main/20230713203502.png?token=AURJC3KITYT73JXRAIS77FDEV7X3M)
+![](https://raw.githubusercontent.com/DuskWhite/Image/main/20230713203502.png)
 
 ## 业务功能:
 ### 用户模块

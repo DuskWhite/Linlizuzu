@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * @author Damumu
+ */
 @SpringBootApplication
 @MapperScan("com.xyxy.*.mapper")
 public class LinlizuzuApplication {
@@ -15,6 +18,7 @@ public class LinlizuzuApplication {
         SpringApplication.run(LinlizuzuApplication.class, args);
     }
     @Bean
+
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }

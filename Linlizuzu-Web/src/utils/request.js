@@ -2,6 +2,7 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+import router from '@/router'
 
 // create an axios instance
 const service = axios.create({
@@ -52,6 +53,10 @@ service.interceptors.response.use(
         type: 'error',
         duration: 5 * 1000
       })
+
+      if(res.code === 20004 || res.code === 20003){
+        router.push("/login")
+      }
 
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {

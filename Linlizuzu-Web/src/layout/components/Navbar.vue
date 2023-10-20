@@ -88,7 +88,7 @@ import userApi from "@/api/userManage";
 export default {
   data() {
     return {
-      bgurl: "http://localhost:9999/uploadFile/infobg.jpg",
+      bgurl: "http://localhost:9999/api/uploadFile/infobg.jpg",
       avatarurl: "",
       balance: 0,
       id: this.$store.getters.id,
@@ -107,7 +107,7 @@ export default {
   },
   methods: {
     setDefaultImage(e) {
-      e.target.src = "http://localhost:9999/uploadFile/avatar.jpg";
+      e.target.src = "http://localhost:9999/api/uploadFile/avatar.jpg";
     },
     getUserById(id) {
       userApi.getUserById(id).then((response) => {

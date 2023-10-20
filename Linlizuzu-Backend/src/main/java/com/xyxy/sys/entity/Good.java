@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @author 吴沈涛
  * @since 2023-05-19
  */
-@TableName("x_good")
+@TableName("zu_good")
 public class Good implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -20,7 +20,7 @@ import java.util.List;
  * @since 2023-05-15
  */
 @Data
-@TableName("x_role")
+@TableName("zu_role")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Role implements Serializable {

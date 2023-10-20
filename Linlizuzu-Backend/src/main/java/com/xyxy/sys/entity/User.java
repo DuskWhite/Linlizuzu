@@ -17,7 +17,7 @@ import java.util.List;
  * @author 吴沈涛
  * @since 2023-05-15
  */
-@TableName("x_user")
+@TableName("zu_user")
 @Data
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;

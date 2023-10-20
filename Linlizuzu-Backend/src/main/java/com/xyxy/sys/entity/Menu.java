@@ -20,7 +20,7 @@ import java.util.Map;
  * @author 吴沈涛
  * @since 2023-05-15
  */
-@TableName("x_menu")
+@TableName("zu_menu")
 @Data
 public class Menu implements Serializable {
 

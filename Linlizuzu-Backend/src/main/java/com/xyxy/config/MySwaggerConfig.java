@@ -53,10 +53,10 @@ public class MySwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("物品租赁平台接口文档")
-                .description("小小物品租赁")
+                .title("邻里租租接口文档")
+                .description("邻里租租-畅享租借")
                 .version("1.0")
-                .contact(new Contact("DuskWhite", "http://localhost:8888", "1057160644@qq.com"))
+                .contact(new Contact("DuskWhite", "https://github.com/DuskWhite/Linlizuzu", "1057160644@qq.com"))
                 .build();
     }
 }

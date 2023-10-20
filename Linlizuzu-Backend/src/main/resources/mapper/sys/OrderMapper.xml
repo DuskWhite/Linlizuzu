@@ -5,7 +5,7 @@
         SELECT
             COUNT(*)
         FROM
-            x_order
+            zu_order
         WHERE
             owner_name = #{username}
     </select>
@@ -13,18 +13,18 @@
         SELECT
             COUNT(*)
         FROM
-            x_order
+            zu_order
         WHERE
             renter_name = #{username} and order_status = 1
     </select>
     <update id="updateOrderStatus" parameterType="Integer" >
-        UPDATE x_order
+        UPDATE zu_order
         SET order_status = 3
         WHERE
             order_id = #{id} and order_status = 1
     </update>
     <update id="changeOrderStatus" >
-        UPDATE x_order
+        UPDATE zu_order
         SET order_status = #{status}
         WHERE
             order_id = #{id}

@@ -3,6 +3,7 @@ package com.xyxy.sys.mapper;
 import com.xyxy.sys.entity.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -15,5 +16,6 @@ import java.util.List;
  * @since 2023-05-15
  */
 public interface MenuMapper extends BaseMapper<Menu> {
-    public List<Menu> getMenuListByUserId(@Param("userId") Integer userId, @Param("pid") Integer pid);
+
+    List<Menu> getMenuListByUserId(@Param("userId") Integer userId, @Param("pid") Integer pid);
 }

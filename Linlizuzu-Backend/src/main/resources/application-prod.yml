@@ -1,0 +1,33 @@
+#生产环境
+server:
+  servlet:
+    context-path: /api
+  port: 9999
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://http://101.34.42.90/linlizuzu
+  redis:
+    port: 6379
+    host: 101.34.42.90
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+
+logging:
+  level:
+    com.xyxy: debug
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+  type-aliases-package: com.xyxy.*.entity
+
+

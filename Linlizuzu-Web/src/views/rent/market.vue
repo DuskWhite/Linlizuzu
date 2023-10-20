@@ -59,7 +59,7 @@
                   :src="
                     go.useravatar
                       ? go.useravatar
-                      : 'http://localhost:9999/uploadFile/avatar.jpg'
+                      : 'http://localhost:9999/api/uploadFile/avatar.jpg'
                   "
                   :size="18"
                   @error="setDefaultImage"
@@ -98,7 +98,7 @@
                   :src="
                     co.renteravatar
                       ? co.renteravatar
-                      : 'http://localhost:9999/uploadFile/avatar.jpg'
+                      : 'http://localhost:9999/api/uploadFile/avatar.jpg'
                   "
                   :size="35"
                   @error="setDefaultImage"
@@ -388,7 +388,7 @@ export default {
 
     // 设置图片出错时的默认图片
     setDefaultImage(e) {
-      e.target.src = "http://localhost:9999/uploadFile/avatar.jpg";
+      e.target.src = "http://localhost:9999/api/uploadFile/avatar.jpg";
     },
     clearForm() {
       this.orderForm = {

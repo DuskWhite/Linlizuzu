@@ -4,7 +4,7 @@
     <select id="getMenuIdListByRoleId" parameterType="Integer" resultType="Integer">
         SELECT
             a.`menu_id`
-        FROM x_role_menu a, x_menu b
+        FROM zu_role_menu a, zu_menu b
         WHERE a.`menu_id` = b.`menu_id`
           AND b.`is_leaf` = 'Y'
           AND a.`role_id` = #{roleId}

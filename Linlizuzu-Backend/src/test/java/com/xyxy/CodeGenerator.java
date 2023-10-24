@@ -3,6 +3,7 @@ package com.xyxy;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import org.springframework.security.access.annotation.Secured;
 
 import java.util.Collections;
 

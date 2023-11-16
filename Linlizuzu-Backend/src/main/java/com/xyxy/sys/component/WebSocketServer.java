@@ -5,13 +5,22 @@ package com.xyxy.sys.component;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.xyxy.sys.entity.User;
+import com.xyxy.sys.entity.ZuMsg;
+import com.xyxy.sys.service.IUserService;
+import com.xyxy.sys.service.ZuMsgService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,6 +31,13 @@ import java.util.concurrent.ConcurrentHashMap;
 @ServerEndpoint(value = "/imserver/{username}")
 @Component
 public class WebSocketServer {
+
+    private static ApplicationContext applicationContext;
+
+
+    public static void setApplicationContext(ApplicationContext applicationContext) {
+        WebSocketServer.applicationContext = applicationContext;
+    }
 
     private static final Logger log = LoggerFactory.getLogger(WebSocketServer.class);
 
@@ -83,6 +99,17 @@ public class WebSocketServer {
             jsonObject.set("text", text);  // text 同上面的text
             jsonObject.set("avatar", avatar);
             this.sendMessage(jsonObject.toString(), toSession);
+            ZuMsg zuMsg = new ZuMsg();
+            zuMsg.setUpdateTime(new Date());
+            zuMsg.setMsg(text);
+            User toUser = applicationContext.getBean(IUserService.class).getUserinfoByName(toUsername);
+            zuMsg.setReceiverId(toUser.getId());
+            User sendUser = applicationContext.getBean(IUserService.class).getUserinfoByName(username);
+            zuMsg.setSenderId(sendUser.getId());
+            boolean save = applicationContext.getBean(ZuMsgService.class).save(zuMsg);
+            if (save){
+                log.info("保存聊天记录成功");
+            }
             log.info("发送给用户username={}，消息：{}", toUsername, jsonObject.toString());
         } else {
             log.info("发送失败，未找到用户username={}的session", toUsername);

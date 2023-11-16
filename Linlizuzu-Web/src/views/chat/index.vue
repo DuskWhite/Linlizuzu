@@ -73,6 +73,7 @@
 <script>
 import request from "@/utils/request";
 import userApi from "@/api/userManage";
+import messageApi from "@/api/messageManage";
 let socket;
 
 export default {
@@ -95,6 +96,19 @@ export default {
     this.init();
   },
   methods: {
+    getMessage(){
+      messageApi.getMessages(18,1).then((res)=>{
+        for(let rest of res.data){
+          this.createContent(
+              null,
+              this.user.username,
+              rest.msg,
+              this.hereavatar
+            );          
+        }
+
+      })
+    },
     getUserAvatarByName(username) {
       userApi.getUserAvatarByName(username).then((response) => {
         this.hereavatar = response.data;
@@ -183,6 +197,7 @@ export default {
     },
     init() {
       this.getUserAvatarByName(this.$store.getters.name);
+      this.getMessage();
       this.user = {
         username: this.$store.getters.name,
         text: "",
@@ -194,7 +209,7 @@ export default {
         console.log("您的浏览器不支持WebSocket");
       } else {
         console.log("您的浏览器支持WebSocket");
-        let socketUrl = "ws://localhost:9999/imserver/" + username;
+        let socketUrl = "ws://"+process.env.VUE_APP_BASE_API.substring(6)+"/imserver/" + username;
         if (socket != null) {
           socket.close();
           socket = null;

@@ -1,9 +1,6 @@
 HELP.md
-target/
+**/target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
 ### STS ###
 .apt_generated
 .classpath
@@ -32,6 +29,5 @@ build/
 ### VS Code ###
 .vscode/
 
-### LinlizuzuBackEnd
-/LinlizuzuBackEnd/
-/node_modules/
+
+**/node_modules/

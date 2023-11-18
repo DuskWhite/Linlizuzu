@@ -1,6 +1,5 @@
 package com.linli.linlizuzu.common;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**

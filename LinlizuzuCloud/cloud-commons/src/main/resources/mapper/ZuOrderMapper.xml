@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="linlizuzu.mapper.ZuOrderMapper">
+
+    <resultMap id="BaseResultMap" type="linlizuzu.entity.ZuOrder">
+            <id property="orderId" column="order_id" jdbcType="INTEGER"/>
+            <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+            <result property="ownerName" column="owner_name" jdbcType="VARCHAR"/>
+            <result property="renterName" column="renter_name" jdbcType="VARCHAR"/>
+            <result property="goodName" column="good_name" jdbcType="VARCHAR"/>
+            <result property="rentTime" column="rent_time" jdbcType="TIMESTAMP"/>
+            <result property="overTime" column="over_time" jdbcType="TIMESTAMP"/>
+            <result property="orderStatus" column="order_status" jdbcType="INTEGER"/>
+            <result property="orderAmountTotal" column="order_amount_total" jdbcType="DOUBLE"/>
+            <result property="delete" column="delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        order_id,order_no,owner_name,
+        renter_name,good_name,rent_time,
+        over_time,order_status,order_amount_total,
+        delete
+    </sql>
+</mapper>

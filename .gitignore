@@ -32,5 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-### LinlizuzuBackEnd
-/LinlizuzuBackEnd/
+**/node_modules/

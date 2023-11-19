@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="linlizuzu.mapper.ZuCommentMapper">
+
+    <resultMap id="BaseResultMap" type="linlizuzu.entity.ZuComment">
+            <id property="commentId" column="comment_id" jdbcType="INTEGER"/>
+            <result property="goodId" column="good_id" jdbcType="INTEGER"/>
+            <result property="ownerId" column="owner_id" jdbcType="INTEGER"/>
+            <result property="renterId" column="renter_id" jdbcType="INTEGER"/>
+            <result property="orderId" column="order_id" jdbcType="INTEGER"/>
+            <result property="score" column="score" jdbcType="INTEGER"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="publishTime" column="publish_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        comment_id,good_id,owner_id,
+        renter_id,order_id,score,
+        content,publish_time
+    </sql>
+</mapper>
